@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    <h1>Paciente</h1>
+    <form method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" name="txt_dato" placeholder="Buscar" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-secondary" type="submit" id="button-addon2">Button</button>
+        </div>
+    </form>
+    <br>
+    <form action="{% url 'paciente:list-fecha_paciente' %}" method="GET">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col">
+                <input type="date" name="fecha_inicio" class="form-control" name="fecha"/>
+            </div>
+
+            <div class="col">
+                <input type="date" name="fecha_final" class="form-control" name="fecha"/>
+            </div>
+
+            <div class="col">
+                <button type="submit" class="btn btn-secondary">Buscar</button>
+            </div>
+        </div>
+        
+    </form>
+    <br>
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dni</th>
+            <th>Genero</th>
+            <th>Atencion</th>
+            <th>Observacion</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if paciente|length > 0 %}
+                {% for p in paciente %}
+                    <tr>
+                        <td>{{p.first_name}}</td>
+                        <td>{{p.last_name}}</td>
+                        <td>{{p.dni}}</td>
+                        <td>{{p.genero}}</td>
+                        <td>{{p.fecha_atencion}}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{% url 'paciente:update-paciente' p.id %}">Update</a>
+                            <a class="btn btn-danger" href="{% url 'paciente:delete-paciente' p.id %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                    <p class="alert alert-danger">No existe Pacientes</p>
+            {% endif %}
+        </tbody>
+      </table>
+   
+{% endblock %}

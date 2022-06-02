@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    <h1>Paciente</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row" style="margin-top:60px;">
+            <div class="col">
+                {{form.first_name}}
+            </div>
+            <div class="col">
+                {{form.last_name}}
+            </div>
+        </div>
+        <div class="row" style="margin-top:60px;">
+            <div class="col">
+                {{form.dni}}
+            </div>
+            <div class="col">
+                {{form.genero}}
+            </div>
+        </div>
+    
+        <div class="row" style="margin-top:60px;">
+            <div class="col">
+                {{form.fecha_atencion}}
+            </div>
+            <div class="col">
+    
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </form>
+   
+{% endblock %}

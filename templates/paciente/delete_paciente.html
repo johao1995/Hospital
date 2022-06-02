@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+    <h1>Paciente</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row" style="margin-top:60px;">
+            <div class="col">
+                <p style="font-size:20px;">
+                    Desea Eliminar el Usuario:{{paciente.first_name}}
+                </p>
+            </div>
+        </div>
+        <br><br>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </form>
+   
+{% endblock %}
